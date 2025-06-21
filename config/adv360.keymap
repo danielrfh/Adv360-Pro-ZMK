@@ -16,7 +16,7 @@
             bindings = <&kp>, <&td_backspace_layer>;
 
             #binding-cells = <2>;
-            tapping-term-ms = <400>;
+            tapping-term-ms = <300>;
             flavor = "tap-preferred";
         };
 
@@ -24,7 +24,7 @@
             compatible = "zmk,behavior-tap-dance";
             label = "TD_BACKSPACE_LAYER";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <250>;
             bindings = <&kp BSPC>, <&tog 1>;
         };
     };
