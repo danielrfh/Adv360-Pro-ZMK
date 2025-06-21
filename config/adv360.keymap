@@ -10,16 +10,6 @@
         #include "macros.dtsi"
       #include "version.dtsi"
 
-        hm: homerow_mods {
-            compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_MODS";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick_tap_ms = <175>;
-            flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
-        };
-
         ht_backspace_hyper: ht_backspace_hyper {
             compatible = "zmk,behavior-hold-tap";
             label = "HT_BACKSPACE_HYPER";
@@ -27,7 +17,6 @@
 
             #binding-cells = <2>;
             tapping-term-ms = <400>;
-            quick-tap-ms = <(-1)>;
             flavor = "tap-preferred";
         };
 
