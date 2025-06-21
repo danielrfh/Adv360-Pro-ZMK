@@ -26,8 +26,8 @@
             bindings = <&kp>, <&td_backspace_layer>;
 
             #binding-cells = <2>;
-            tapping-term-ms = <250>;
-            quick-tap-ms = <150>;
+            tapping-term-ms = <400>;
+            quick-tap-ms = <(-1)>;
             flavor = "tap-preferred";
         };
 
