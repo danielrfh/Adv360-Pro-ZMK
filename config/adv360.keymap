@@ -10,22 +10,14 @@
         #include "macros.dtsi"
       #include "version.dtsi"
 
-        ht_backspace_hyper: ht_backspace_hyper {
+        mtb: mtb {
             compatible = "zmk,behavior-hold-tap";
-            label = "HT_BACKSPACE_HYPER";
-            bindings = <&kp>, <&td_backspace_layer>;
+            label = "Mod Tab Balanced";
+            bindings = <&kp>, <&kp>;
 
             #binding-cells = <2>;
-            tapping-term-ms = <300>;
-            flavor = "tap-preferred";
-        };
-
-        td_backspace_layer: td_backspace_layer {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_BACKSPACE_LAYER";
-            #binding-cells = <0>;
-            tapping-term-ms = <250>;
-            bindings = <&kp BSPC>, <&tog 1>;
+            tapping-term-ms = <200>;
+            flavor = "balanced";
         };
     };
 
@@ -35,11 +27,11 @@
         Mac {
             display-name = "Base";
             bindings = <
-&kp EQUAL  &kp N1     &kp N2    &kp N3    &kp N4     &kp N5  &tog 1                                                                         &mo 3                        &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &kp MINUS
-&kp TAB    &kp Q      &kp W     &kp E     &kp R      &kp T   &tog 4                                                                         &none                        &kp Y   &kp U   &kp I      &kp O     &kp P     &kp BSLH
-&kp ESC    &kp A      &kp S     &kp D     &kp F      &kp G   &none                            &kp LGUI  &kp LALT      &kp LCTRL  &kp RGUI   &none                        &kp H   &kp J   &kp K      &kp L     &kp SEMI  &kp SQT
-&kp LSHFT  &kp Z      &kp X     &kp C     &kp V      &kp B                                              &kp HOME      &kp PG_UP                                          &kp N   &kp M   &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
-&mo 2      &kp GRAVE  &kp CAPS  &kp LEFT  &kp RIGHT          &mt LA(LC(LG(LSHFT))) BACKSPACE  &kp DEL   &kp END       &kp PG_DN  &kp ENTER  &mt RA(RC(RG(RSHFT))) SPACE          &kp UP  &kp DOWN   &kp LBKT  &kp RBKT  &mo 2
+&kp EQUAL  &kp N1     &kp N2    &kp N3    &kp N4     &kp N5  &tog 1                                                                          &mo 3                         &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &kp MINUS
+&kp TAB    &kp Q      &kp W     &kp E     &kp R      &kp T   &tog 4                                                                          &none                         &kp Y   &kp U   &kp I      &kp O     &kp P     &kp BSLH
+&kp ESC    &kp A      &kp S     &kp D     &kp F      &kp G   &none                             &kp LGUI  &kp LALT      &kp LCTRL  &kp RGUI   &none                         &kp H   &kp J   &kp K      &kp L     &kp SEMI  &kp SQT
+&kp LSHFT  &kp Z      &kp X     &kp C     &kp V      &kp B                                               &kp HOME      &kp PG_UP                                           &kp N   &kp M   &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
+&mo 2      &kp GRAVE  &kp CAPS  &kp LEFT  &kp RIGHT          &mtb LA(LC(LG(LSHFT))) BACKSPACE  &kp DEL   &kp END       &kp PG_DN  &kp ENTER  &mtb RA(RC(RG(RSHFT))) SPACE          &kp UP  &kp DOWN   &kp LBKT  &kp RBKT  &mo 2
             >;
         };
 
