@@ -32,7 +32,7 @@ Snapshot of `ReFil/zmk` `adv360-z3.5-2` @ `d93499b` (2026-08-27), from the fork'
 - `&bt BT_SEL n` does nothing if profile `n` is already active.
 - Keycode headers: the keymap includes `bt.h`, `keys.h`, `rgb.h`, `backlight.h` and `stp.h`. Mouse values (`MB1`–`MB5`, `MOVE_*`, `SCRL_*`) are already in scope, as `Double_Click` shows. The `&out` values (`OUT_USB`, `OUT_BLE`, `OUT_TOG`) need `#include <dt-bindings/zmk/outputs.h>`, which the keymap doesn't have yet.
 - The Studio build (left half) uses the `studio-rpc-usb-uart` snippet. It sets `ZMK_BEHAVIORS_KEEP_ALL`, so every default behavior is compiled in and can be assigned from Studio/Clique. Non-Studio builds (the right half and the Legacy CI job) drop default behaviors that nothing references.
-- Studio/Clique show a behavior's `display-name` (falling back to its node name), so give new behaviors and macros one. Saved bindings refer to a CRC16 of the behavior's device name (its node name, or its `label` if set), so renaming a node orphans saved bindings that use it. Since `d93499b`, orphaned bindings act as `&trans`.
+- Studio/Clique show a behavior's `display-name` (falling back to its node name), so give new behaviors and macros one. Saved bindings refer to a CRC16 of the behavior's device name (its node name, or its `label` if set), so renaming a node orphans saved bindings that use it. Those keys then fall through to the layer below, like `&trans`.
 - For C code (custom behaviors, event listeners), the fork's `app/CMakeLists.txt` accepts `-DZMK_EXTRA_MODULES`, but `bin/build.sh`, CI and the Makefile mounts don't provide one. To make a layer follow the BT profile automatically, listen for `zmk_ble_active_profile_changed`. It fires on a profile switch, when the active profile's host connects or disconnects, and when a profile is paired or cleared.
 
 ## Build
@@ -46,7 +46,7 @@ Snapshot of `ReFil/zmk` `adv360-z3.5-2` @ `d93499b` (2026-08-27), from the fork'
 - `make` writes `config/version.dtsi` with `bin/get_version_local.sh`, then restores it with `git checkout`. A failed build skips the restore: run `git checkout config/version.dtsi`. Never commit a filled-in version of this file.
 - ZMK and Zephyr are copied into the `zmk` image when it is built:
   - Editing `config/west.yml` triggers a rebuild automatically.
-  - Picking up new commits on the same `revision` needs `make clean_image`.
+  - Picking up new commits on the same `revision` needs `make clean_image`, which also removes the base `zmk-build-arm:stable` image so it gets re-pulled. CI fetches both fresh on every run, so a stale local image builds against different code than CI. Compare `podman run --rm zmk git -C zmk log -1 --oneline` with the head of `ReFil/zmk` `adv360-z3.5-2`.
   - `make clean_firmware` and `make clean` delete every `.uf2` in `firmware/`, including older builds.
 - Don't run `west` on the host in the repo root. `west update` clones `zephyr/`, `zmk/`, `modules/` and more there, and none of it is gitignored. `west build` also fails unless `bin/get_version*.sh` ran first.
 - The build commands exist in three places; keep them in sync:
