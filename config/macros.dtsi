@@ -222,3 +222,17 @@
     bindings = <&mkp MB1 &mkp MB1>;
     display-name = "Double Click";
   };
+
+  Mac_BT: Mac_BT {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&bt BT_SEL 0>, <&to 0>;
+    display-name = "BT Profile 1 + Mac Layer";
+  };
+
+  Win_BT: Win_BT {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&bt BT_SEL 1>, <&to 4>;
+    display-name = "BT Profile 2 + Win Layer";
+  };
