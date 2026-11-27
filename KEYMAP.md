@@ -106,29 +106,26 @@ Each half has a layer LED that shows the highest layer that's on:
 | # | Layer | Left, right |
 | ---: | --- | :---: |
 | 0 | Base | <img valign='middle' src='assets/swatches/000000.svg'/> <img valign='middle' src='assets/swatches/000000.svg'/> |
-| 1 | Keypad | <img valign='middle' src='assets/swatches/FFFFFF.svg'/> <img valign='middle' src='assets/swatches/FFFFFF.svg'/> |
-| 2 | Fn | <img valign='middle' src='assets/swatches/0000FF.svg'/> <img valign='middle' src='assets/swatches/0000FF.svg'/> |
-| 3 | Mod | <img valign='middle' src='assets/swatches/00FF00.svg'/> <img valign='middle' src='assets/swatches/00FF00.svg'/> |
-| 4 | Win | <img valign='middle' src='assets/swatches/FF0000.svg'/> <img valign='middle' src='assets/swatches/FF0000.svg'/> |
-| 5 | Mods off | <img valign='middle' src='assets/swatches/FF00FF.svg'/> <img valign='middle' src='assets/swatches/FF00FF.svg'/> |
+| 1 | Win | <img valign='middle' src='assets/swatches/FFFFFF.svg'/> <img valign='middle' src='assets/swatches/FFFFFF.svg'/> |
+| 2 | Mods off | <img valign='middle' src='assets/swatches/0000FF.svg'/> <img valign='middle' src='assets/swatches/0000FF.svg'/> |
+| 3 | Keypad | <img valign='middle' src='assets/swatches/00FF00.svg'/> <img valign='middle' src='assets/swatches/00FF00.svg'/> |
+| 4 | Fn | <img valign='middle' src='assets/swatches/FF0000.svg'/> <img valign='middle' src='assets/swatches/FF0000.svg'/> |
+| 5 | Mod | <img valign='middle' src='assets/swatches/FF00FF.svg'/> <img valign='middle' src='assets/swatches/FF00FF.svg'/> |
 | 6 | Vim | <img valign='middle' src='assets/swatches/00FFFF.svg'/> <img valign='middle' src='assets/swatches/00FFFF.svg'/> |
-| 7 | Keypad fix | <img valign='middle' src='assets/swatches/FFFF00.svg'/> <img valign='middle' src='assets/swatches/FFFF00.svg'/> |
-| 8 | Mod fix | <img valign='middle' src='assets/swatches/FFFFFF.svg'/> <img valign='middle' src='assets/swatches/0000FF.svg'/> |
 
-- Keypad fix and Mod fix turn on by themselves when you use Keypad or Mod while Win or Mods off is on. They keep those keys working the same as on the Mac, and they're higher, so on Windows Keypad shows yellow and Mod shows white and blue.
-- Fn is lower than Win and Mods off, so holding Fn on Windows leaves the LED red.
+- Keypad, Fn and Mod sit above Win and Mods off, so they show the same colour on the Mac and on Windows.
 - The left half also has a Caps Lock LED and a Bluetooth LED: profile 1 white, 2 blue, 3 red, 4 green, 5 off. It blinks fast while the profile isn't paired, and slowly while it's paired but not connected.
 - The right half also has Num Lock and Scroll Lock LEDs. All its LEDs blink red while it isn't connected to the left half.
 - While you hold Mod and key 39, each half shows its own battery level: green at 80 % or more, yellow at 50 % or more, orange at 20 % or more, red below that.
 
 ## Clique and ZMK Studio
 
-Edits saved from Clique or ZMK Studio are stored on the keyboard and applied over the flashed keymap at every start, so flashing doesn't remove them. If a flashed change doesn't show up, that key was probably edited in Clique.
+Edits saved from Clique or ZMK Studio are stored on the keyboard and applied over the flashed keymap at every start, so flashing doesn't remove them. If a flashed change doesn't show up, that key was probably edited in Clique. Each edit belongs to a layer number, so reordering the layers in the keymap moves saved edits onto other layers.
 
 "Restore Stock Settings" (unlock first with Mod+Esc) deletes those edits, along with saved layer names and order. It can't be undone, so copy any edit worth keeping into `config/adv360.keymap`, flash, and then restore. Bluetooth pairings and lighting aren't affected.
 
 ## Changing the keymap
 
 - Keymap changes only need the left half: run `make left` and flash the left half.
-- Put Windows-only differences on the Win layer. Every key that Win or Mods off sets also needs the Keypad and Mod bindings at that position in Keypad fix and Mod fix; see [AGENTS.md](AGENTS.md).
+- Put Windows-only differences on the Win layer. Keep Win and Mods off below Keypad, Fn and Mod in the layer order, so those layers work the same on both computers; see [AGENTS.md](AGENTS.md).
 - Update this file when a change alters how a key or layer behaves. `README.md` stays as upstream's, so syncing the fork never conflicts on it.
