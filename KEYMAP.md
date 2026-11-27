@@ -42,6 +42,7 @@ On Base:
 - A held key acts as a modifier only with a key on the other hand or a thumb key. For Cmd+C, hold K and press C. For the left-hand mods, = and the ← → keys also count as the other hand.
 - While you type they stay letters: if you pressed another key less than 150 ms earlier (250 ms for A, S, L and ;), the key types its letter.
 - Ctrl and Opt (A, S, L, ;) take 500 ms to count as held on their own; Cmd and Shift take 200 ms. If you hold A, S, L or ; and let go without pressing another key, it types its letter.
+- Ctrl and Opt from A, S, L and ; only reach the computer once you press another key, so they don't work with the mouse. For Ctrl+click or Opt+drag, hold Home or PgUp (Ctrl) or an Opt thumb key. Cmd and Shift from D, F, J and K do work with the mouse once held for 200 ms.
 
 ## Shift selection (Mac)
 
