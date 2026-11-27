@@ -26,6 +26,13 @@ What this fork's keymap does. One layout serves a Mac on Bluetooth profile 1 and
 | Del (66), Enter (69) | tap: key, hold: Hyper (Ctrl+Opt+Cmd+Shift) | key |
 | End (67), PgDn (68) | tap: key, hold: Meh (Ctrl+Opt+Shift) | key |
 
+On Base:
+
+- Backspace, Space, Del, End, PgDn and Enter start their hold only when you press another key while holding them. Held on their own, they type their key once when you let go.
+- To repeat Backspace, Del, End, PgDn or Enter, tap the key, then press and hold it straight away.
+- While you type they stay plain keys: if you pressed another key less than 150 ms earlier, they type their key.
+- Hyper and Meh only reach the computer once you press another key, so they don't work with the mouse.
+
 ## Home-row mods (Mac)
 
 | Key | A | S | D | F | J | K | L | ; |
