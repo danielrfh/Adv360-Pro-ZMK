@@ -236,3 +236,10 @@
     bindings = <&bt BT_SEL 1>, <&to 4>;
     display-name = "BT Profile 2 + Win Layer";
   };
+
+  BT_Clear: BT_Clear {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    bindings = <&bt BT_CLR>;
+    display-name = "Clear BT Profile";
+  };
