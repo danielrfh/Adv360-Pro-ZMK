@@ -24,6 +24,9 @@
             #binding-cells = <2>;
             tapping-term-ms = <200>;
             flavor = "balanced";
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <150>;
+            retro-tap;
         };
 
         hm_l: hm_l {
@@ -95,6 +98,7 @@
             tapping-term-ms = <200>;
             quick-tap-ms = <200>;
             require-prior-idle-ms = <150>;
+            retro-tap;
         };
 
         vim_space: vim_space {
@@ -106,6 +110,7 @@
             flavor = "balanced";
             tapping-term-ms = <200>;
             require-prior-idle-ms = <150>;
+            retro-tap;
         };
 
         shift_sel_l: shift_sel_l {
