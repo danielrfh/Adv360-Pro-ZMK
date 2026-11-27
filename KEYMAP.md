@@ -76,7 +76,7 @@ On the Vim layer, hold M for about a third of a second to turn the home-row mods
 
 ## Keypad and Fn
 
-- **Keypad:** the top-row key right of 5 (6) turns it on or off. The right half becomes a number pad: 7 8 9 on U I O, 4 5 6 on J K L, 1 2 3 on M , . and 0 on Space, with . on [, Num Lock, =, / and * on 7 8 9 0, and −, + and Enter on P ; /. The rest of the keyboard has plain keys with no holds, and the upper thumb keys become Ctrl, Alt, Cmd/Win, Ctrl.
+- **Keypad:** the top-row key right of 5 (6) turns it on or off. The right half becomes a number pad: 7 8 9 on U I O, 4 5 6 on J K L, 1 2 3 on M , . and 0 on Space, with . on [, Num Lock, =, / and * on 7 8 9 0, and −, + and Enter on P ; /. The rest of the keyboard has plain keys with no holds, except the upper thumb keys, which keep their Base or Win modifiers.
 - **Fn:** hold either outer bottom corner key (60, 75). The top row from = to - gives F1 to F12.
 
 ## Mod layer
