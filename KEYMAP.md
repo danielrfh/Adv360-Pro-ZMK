@@ -79,6 +79,7 @@ Hold Mod, the top-row key left of 6 (7).
 | Key | Does |
 | --- | --- |
 | 1 to 5 | Bluetooth profile, see [Mac and Windows](#mac-and-windows) |
+| = | send keystrokes over USB or Bluetooth, see below |
 | Right thumb, upper left (37) | clear the active profile's pairing |
 | Key right of T (20), key left of Y (21) | bootloader for the left, right half |
 | Esc | unlock ZMK Studio and Clique |
@@ -87,6 +88,8 @@ Hold Mod, the top-row key left of 6 (7).
 | Enter | backlight on or off |
 | ↑, ↓ | backlight brighter, dimmer |
 | Space | status LEDs on or off |
+
+While the left half is plugged into a computer and a Bluetooth profile is connected too, keystrokes go over USB. Mod+= switches them to Bluetooth, and pressing it again switches back. The keyboard remembers the choice. When only USB or only Bluetooth is connected, that one is used.
 
 ## LEDs
 
