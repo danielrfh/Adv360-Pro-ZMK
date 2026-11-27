@@ -87,7 +87,7 @@ Hold Mod, the top-row key left of 6 (7).
 | --- | --- |
 | 1 to 5 | Bluetooth profile, see [Mac and Windows](#mac-and-windows) |
 | = | send keystrokes over USB or Bluetooth, see below |
-| Right thumb, upper left (37) | clear the active profile's pairing |
+| Right thumb, upper left (37), held for 1 s | clear the active profile's pairing |
 | Key right of T (20), key left of Y (21) | bootloader for the left, right half |
 | Esc | unlock ZMK Studio and Clique |
 | V | type the firmware version |
