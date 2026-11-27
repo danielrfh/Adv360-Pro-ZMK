@@ -63,4 +63,5 @@ Snapshot of `ReFil/zmk` `adv360-z3.5-2` @ `d93499b` (2026-08-27), from the fork'
 ## CI & git
 - CI runs on every push and PR (about 3 min) and uploads `firmware-clique` and `firmware-no-clique` artifacts. Status without auth: `https://api.github.com/repos/danielrfh/Adv360-Pro-ZMK/actions/runs?per_page=5`.
 - `V3.0` is the default and only branch. Upstream (`KinesisCorporation/Adv360-Pro-ZMK` @ `V3.0`) is merged in with GitHub's "Sync fork" button; there is no local `upstream` remote.
+- Put each change in its own commit, for example keymap and docs apart, so any one of them can be reverted on its own. Push to `origin/V3.0` right after committing. If the push is rejected because `keymap-editor[bot]` pushed in the meantime, run `git pull --rebase` (this clone has `pull.rebase=false`, so a plain `git pull` would merge) and push again.
 - `CHANGELOG.md` entries and `.github/pull_request_template.md` are for PRs to upstream Kinesis. Personal keymap commits don't add changelog entries.
