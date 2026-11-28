@@ -191,9 +191,52 @@
             flavor = "tap-preferred";
             tapping-term-ms = <1000>;
         };
+
+        // Taps its key or shortcut once, however long the key is held, like kanata's once
+        // template. A held shortcut would repeat: a panel would open and close again.
+        // It takes a parameter, so it sits here rather than in macros.dtsi, next to the
+        // other behaviors with parameters.
+        once: once {
+            compatible = "zmk,behavior-macro-one-param";
+            display-name = "Tap once";
+            #binding-cells = <1>;
+            bindings = <&macro_param_1to1>, <&kp MACRO_PLACEHOLDER>;
+        };
+
+        hold_once: hold_once {
+            compatible = "zmk,behavior-hold-tap";
+            display-name = "Hold to tap once";
+            bindings = <&once>, <&none>;
+
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <350>;
+        };
+
+        sleep_pc: sleep_pc {
+            compatible = "zmk,behavior-hold-tap";
+            display-name = "Hold to sleep (Windows)";
+            bindings = <&Win_Sleep>, <&none>;
+
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <350>;
+        };
+
+        // macOS ignores quick presses of the power key. Ctrl+Cmd+power restarts the Mac
+        // without saving, so with Ctrl or Cmd held the key does nothing.
+        power_key: power_key {
+            compatible = "zmk,behavior-mod-morph";
+            display-name = "Power (not with Ctrl or Cmd)";
+            #binding-cells = <0>;
+            bindings = <&kp C_POWER>, <&none>;
+
+            mods = <(MOD_LCTL|MOD_RCTL|MOD_LGUI|MOD_RGUI)>;
+        };
     };
 
     // Win and ModsOff sit below keypad, fn and mod, so those layers work the same on Mac and Windows.
+    // The exception is fn's system keys: on Windows, FnWin replaces the Mac shortcuts.
     keymap {
         compatible = "zmk,keymap";
 
@@ -244,11 +287,11 @@
         fn {
             display-name = "Fn";
             bindings = <
-&kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F6  &tog 3                                      &mo 5   &kp F7  &kp F8  &kp F9  &kp F10  &kp F11  &kp F12
-&trans  &trans  &trans  &trans  &trans  &trans  &none                                       &none   &trans  &trans  &trans  &trans   &trans   &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &none   &trans  &trans      &trans  &trans  &none   &trans  &trans  &trans  &trans   &trans   &trans
-&trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                  &trans  &trans  &trans  &trans   &trans   &trans
-&trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans          &trans  &trans  &trans   &trans   &trans
+&kp F1  &kp F2                  &kp F3                &kp F4  &kp F5            &kp F6             &tog 3                                                          &mo 5  &kp F7        &kp F8            &kp F9        &kp F10             &kp F11              &kp F12
+&none   &hold_once LC(LG(Q)) 0  &none                 &none   &once LS(LG(N5))  &once LA(LG(ESC))  &none                                                           &none  &none         &once LA(LG(F5))  &none         &once LA(C_VOL_UP)  &once LA(C_BRI_INC)  &none
+&trans  &none                   &once LC(LS(LG(N4)))  &none   &once LS(LG(N3))  &none              &none               &trans  &trans  &trans  &trans              &none  &once C_PREV  &kp C_VOL_DN      &kp C_VOL_UP  &once C_NEXT        &once C_MUTE         &once LG(LS(M))
+&trans  &power_key              &none                 &none   &Mac_Clipboard    &none                                          &trans  &trans                             &none         &mods_toggle 2 0  &none         &none               &none                &trans
+&trans  &none                   &none                 &none   &none                                        &once C_PP  &trans  &trans  &trans  &trans  &once C_PP                       &none             &none         &none               &none                &trans
             >;
         };
 
@@ -272,6 +315,26 @@
 &kp LSHFT    &none          &kp DEL        &caps_word  &none          &kp LA(LEFT)                       &none  &none                    &none      &mods_toggle 2 0  &none   &none      &kp LG(F)     &kp RSHFT
 &none        &none          &none          &none       &none                        &kp LA(BSPC)  &none  &none  &none  &kp ENTER  &none             &none             &none   &none      &none         &none
             >;
+        };
+
+        FnWin {
+            display-name = "Fn Win";
+            bindings = <
+&trans  &trans              &trans           &trans       &trans           &trans             &trans                                                  &trans  &trans       &trans       &trans       &trans           &trans       &trans
+&trans  &hold_once LG(L) 0  &trans           &trans       &once LG(LS(R))  &once LC(LS(ESC))  &trans                                                  &trans  &trans       &once LG(U)  &once LG(I)  &once LG(LC(V))  &once LG(P)  &trans
+&trans  &once LG(A)         &once LG(LS(S))  &trans       &once LG(PSCRN)  &trans             &trans          &trans  &trans  &trans  &trans          &trans  &trans       &trans       &trans       &trans           &trans       &once LG(LA(K))
+&trans  &sleep_pc 0 0       &once LG(X)      &once LG(K)  &once LG(V)      &trans                                     &trans  &trans                          &once LG(N)  &none        &trans       &trans           &trans       &trans
+&trans  &trans              &trans           &trans       &trans                                      &trans  &trans  &trans  &trans  &trans  &trans                       &trans       &trans       &trans           &trans       &trans
+            >;
+        };
+    };
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+
+        fn_on_win {
+            if-layers = <1 4>;
+            then-layer = <7>;
         };
     };
 };

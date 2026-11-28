@@ -243,3 +243,21 @@
     bindings = <&bt BT_CLR>;
     display-name = "Clear BT Profile";
   };
+
+  // Spotlight, then its clipboard history. The wait lets Spotlight open first.
+  Mac_Clipboard: Mac_Clipboard {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    wait-ms = <300>;
+    bindings = <&kp LG(SPACE)>, <&kp LG(N4)>;
+    display-name = "Mac Clipboard History";
+  };
+
+  // Windows has no sleep shortcut: power-user menu, then Shut down or sign out, then Sleep.
+  Win_Sleep: Win_Sleep {
+    compatible = "zmk,behavior-macro";
+    #binding-cells = <0>;
+    wait-ms = <500>;
+    bindings = <&kp LG(X)>, <&kp U>, <&kp S>;
+    display-name = "Windows Sleep";
+  };
