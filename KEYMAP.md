@@ -73,12 +73,43 @@ Hold Backspace or Space.
 
 ## Mods off
 
-On the Vim layer, hold M for about a third of a second to turn the home-row mods into plain letters. Do it again, or press Mod+1, to turn them back on. Everything else keeps working.
+On the Vim layer, or with [Fn](#fn-layer) held, hold M for about a third of a second to turn the home-row mods into plain letters. Do it again, or press Mod+1, to turn them back on. Everything else keeps working.
 
-## Keypad and Fn
+## Keypad
 
-- **Keypad:** the top-row key right of 5 (6) turns it on or off. The right half becomes a number pad: 7 8 9 on U I O, 4 5 6 on J K L, 1 2 3 on M , . and 0 on Space, with . on [, Num Lock, =, / and * on 7 8 9 0, and −, + and Enter on P ; /. The rest of the keyboard has plain keys with no holds, except the upper thumb keys, which keep their Base or Win modifiers.
-- **Fn:** hold either outer bottom corner key (60, 75). The top row from = to - gives F1 to F12.
+The top-row key right of 5 (6) turns it on or off. The right half becomes a number pad: 7 8 9 on U I O, 4 5 6 on J K L, 1 2 3 on M , . and 0 on Space, with . on [, Num Lock, =, / and * on 7 8 9 0, and −, + and Enter on P ; /. The rest of the keyboard has plain keys with no holds, except the upper thumb keys, which keep their Base or Win modifiers.
+
+## Fn layer
+
+Hold either outer bottom corner key (60, 75). The top row from = to - gives F1 to F12. The other keys do what kanata's system layer does on the PC (hold ˋ there), with macOS shortcuts on the Mac. On Windows, the Fn Win layer swaps in the Windows shortcuts.
+
+| Key | Mac | Windows |
+| --- | --- | --- |
+| H, L | previous, next track | same |
+| J, K | volume down, up | same |
+| ; | mute | same |
+| Backspace, Space | play/pause | same |
+| ' | mute in Teams (Cmd+Shift+M) | mute the microphone (Win+Alt+K) |
+| T | Force Quit (Opt+Cmd+Esc) | Task Manager (Ctrl+Shift+Esc) |
+| U | Accessibility Shortcuts (Opt+Cmd+F5) | Accessibility settings (Win+U) |
+| V | clipboard history in Spotlight (Cmd+Space, then Cmd+4) | clipboard history (Win+V) |
+| S | screenshot of an area to the clipboard (Ctrl+Shift+Cmd+4) | snip an area (Win+Shift+S) |
+| F | screenshot of the whole screen to a file (Shift+Cmd+3) | screenshot to a file (Win+PrtSc) |
+| R | Screenshot toolbar, which also records (Shift+Cmd+5) | record the screen (Win+Shift+R) |
+| O | Sound settings (Opt+Volume Up) | sound output (Win+Ctrl+V) |
+| P | Displays settings (Opt+Brightness Up) | project to a display (Win+P) |
+| Q, held | lock the screen (Ctrl+Cmd+Q) | lock (Win+L) |
+| Z | power key, see below | held: sleep (Win+X, then U, S) |
+| M, held | [Mods off](#mods-off) on or off | nothing |
+| A, I, N | nothing | Quick Settings, Settings, notifications (Win+A, Win+I, Win+N) |
+| C | nothing | Cast (Win+K) |
+| X | nothing | Win+X menu |
+
+- "Held" means about a third of a second. A quick tap does nothing.
+- Each key sends its shortcut once, however long you hold it. Only the volume keys repeat.
+- Every other letter, symbol and arrow key, plus Tab, ˋ and Caps Lock, does nothing. Esc, Shift, the Fn keys and the thumb keys other than Backspace and Space work as usual.
+- On the Mac, Z is the power key: macOS ignores a quick press, sleeps on a deliberate press and shows the restart and shut down prompt on a long press. With Ctrl or Cmd held it does nothing, because Ctrl+Cmd+power restarts the Mac without asking to save.
+- V on the Mac needs clipboard history turned on in Spotlight's settings.
 
 ## Mod layer
 
@@ -112,8 +143,9 @@ Each half has a layer LED that shows the highest layer that's on:
 | 4 | Fn | <img valign='middle' src='assets/swatches/FF0000.svg'/> <img valign='middle' src='assets/swatches/FF0000.svg'/> |
 | 5 | Mod | <img valign='middle' src='assets/swatches/FF00FF.svg'/> <img valign='middle' src='assets/swatches/FF00FF.svg'/> |
 | 6 | Vim | <img valign='middle' src='assets/swatches/00FFFF.svg'/> <img valign='middle' src='assets/swatches/00FFFF.svg'/> |
+| 7 | Fn Win | <img valign='middle' src='assets/swatches/FFFF00.svg'/> <img valign='middle' src='assets/swatches/FFFF00.svg'/> |
 
-- Keypad, Fn and Mod sit above Win and Mods off, so they show the same colour on the Mac and on Windows.
+- Keypad, Fn and Mod sit above Win and Mods off, so they show the same colour on the Mac and on Windows. The exception is Fn on Windows: holding it also turns on Fn Win, so the LED shows yellow.
 - The left half also has a Caps Lock LED and a Bluetooth LED: profile 1 white, 2 blue, 3 red, 4 green, 5 off. It blinks fast while the profile isn't paired, and slowly while it's paired but not connected.
 - The right half also has Num Lock and Scroll Lock LEDs. All its LEDs blink red while it isn't connected to the left half.
 - While you hold Mod and key 39, each half shows its own battery level: green at 80 % or more, yellow at 50 % or more, orange at 20 % or more, red below that.
@@ -127,5 +159,5 @@ Edits saved from Clique or ZMK Studio are stored on the keyboard and applied ove
 ## Changing the keymap
 
 - Keymap changes only need the left half: run `make left` and flash the left half.
-- Put Windows-only differences on the Win layer. Keep Win and Mods off below Keypad, Fn and Mod in the layer order, so those layers work the same on both computers; see [AGENTS.md](AGENTS.md).
+- Put Windows-only differences on the Win layer, and Windows versions of Fn's system keys on Fn Win. Keep Win and Mods off below Keypad, Fn and Mod in the layer order, so those layers work the same on both computers; see [AGENTS.md](AGENTS.md).
 - Update this file when a change alters how a key or layer behaves. `README.md` stays as upstream's, so syncing the fork never conflicts on it.
